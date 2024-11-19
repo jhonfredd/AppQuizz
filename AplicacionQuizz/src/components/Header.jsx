@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Header = () => {
+  const { isAuthenticated, logout } = useAuth();
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -21,12 +23,26 @@ const Header = () => {
             <li className="nav-item">
               <Link className="nav-link active" to="/">Home</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">Login</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/pregunta">Pregunta</Link>
-            </li>
+            {isAuthenticated == false && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">Login</Link>
+              </li>
+            )}
+            {isAuthenticated && (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/pregunta">Pregunta</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/respuestas">Respuestas</Link>
+                </li>
+              </>
+            )}
+            {isAuthenticated && (
+              <li className="nav-item">
+                <button className="nav-link btn" onClick={logout}>Logout</button>
+              </li>
+            )}
           </ul>
         </div>
       </div>

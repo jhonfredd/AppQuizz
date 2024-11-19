@@ -18,7 +18,7 @@ function App() {
       .then(response => {
         const preguntasConRespuestasMezcladas = response.data.map((pregunta) => ({
           ...pregunta,
-          respuestas: shuffleArray(pregunta.respuestas), // Mezclar respuestas
+          respuestas: shuffleArray(pregunta.respuestas),
         }));
         setPreguntas(preguntasConRespuestasMezcladas);
       })
