@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">Navbar</a>
+        <a className="navbar-brand" href="/">AppQuiz</a>
         <button
           className="navbar-toggler"
           type="button"
@@ -21,11 +21,11 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link active" to="/">Home</Link>
+              <Link className="nav-link active" to="/"> <i className="bi bi-house"></i> Inicio</Link>
             </li>
             {isAuthenticated == false && (
               <li className="nav-item">
-                <Link className="nav-link" to="/login">Login</Link>
+                <Link className="nav-link" to="/login"><i className="bi bi-box-arrow-in-right"></i> Login</Link>
               </li>
             )}
             {isAuthenticated && (
@@ -40,7 +40,7 @@ const Header = () => {
             )}
             {isAuthenticated && (
               <li className="nav-item">
-                <button className="nav-link btn" onClick={logout}>Logout</button>
+                <button className="btn btn-danger" onClick={logout}><i className="bi bi-box-arrow-left"></i> Logout</button>
               </li>
             )}
           </ul>

@@ -59,7 +59,7 @@ function App() {
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
-      <div className="card text-center" style={{ width: "50%" }}>
+      <div className="card text-center">
         <h1 className="text-black">Quiz</h1>
         <div className="card-body">
           <h2>{currentQuestion.pregunta_texto}</h2>

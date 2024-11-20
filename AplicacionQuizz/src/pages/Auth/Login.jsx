@@ -9,7 +9,6 @@ const Login = () => {
   const { isAuthenticated, login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -76,18 +75,6 @@ const Login = () => {
                   autoComplete="current-password"
                   required
                 />
-              </div>
-              <div className="mb-3 form-check">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  id="exampleCheck1"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                />
-                <label className="form-check-label" htmlFor="exampleCheck1">
-                  Remember me
-                </label>
               </div>
               <button type="submit" className="btn btn-primary">
                 Submit
