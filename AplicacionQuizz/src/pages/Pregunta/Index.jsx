@@ -170,30 +170,34 @@ const Index = () => {
     setCurrentPage(pageNumber);
   };
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100">
-      <div className="card" style={{ width:'95%'}}>
+    <div className="d-flex justify-content-center align-items-center">
+      <div className="card">
         <div className="card-body">
           {formulario === false ? (
             <div>
               <h1 className="text-center">Preguntas</h1>
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <form onSubmit={handleSearch} className="d-flex">
-                  <div className="input-group">
-                    <input
-                      type="text"
-                      value={searchValue}
-                      onChange={(e) => setSearchValue(e.target.value)}
-                      className="form-control"
-                      placeholder="Buscar por nombre"
-                    />
-                    <button className="btn btn-primary" type="submit">
-                      <i className="bi bi-search"></i> Buscar
-                    </button>
-                  </div>
-                </form>
-                <button className="btn btn-success" onClick={abrirFormularioCrear}>
-                  <i className="bi bi-plus-circle"></i> Crear Pregunta
-                </button>
+              <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center mb-3">
+                <div className='col-sm-6'> 
+                  <form onSubmit={handleSearch} className="d-flex flex-column flex-sm-row w-100">
+                    <div className="input-group mb-2 mb-sm-0">
+                      <input
+                        type="text"
+                        value={searchValue}
+                        onChange={(e) => setSearchValue(e.target.value)}
+                        className="form-control"
+                        placeholder="Buscar por nombre"
+                      />
+                      <button className="btn btn-primary" type="submit">
+                        <i className="bi bi-search"></i> Buscar
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                <div className='col-sm-2'>
+                  <button className="btn btn-success  mt-2 mt-sm-0" onClick={abrirFormularioCrear}>
+                    <i className="bi bi-plus-circle"></i> Crear Pregunta
+                  </button>
+                </div>
               </div>
               <table className="table table-striped">
                 <thead>
@@ -214,22 +218,25 @@ const Index = () => {
                         <td>{producto.categoria}</td>
                         <td>{producto.status === 1 ? ( <div className='btn btn-outline-success'> Activo </div> ) : ( <div className='btn btn-outline-danger'> Inactivo </div> )}</td>
                         <td>
-                          <button className="btn btn-warning" onClick={() => abrirFormularioEditar(producto)}>
-                            <i className="bi bi-pencil"></i> Editar
-                          </button>
-                          <button className="btn btn-danger ms-2" onClick={() => eliminarPregunta(producto.pregunta_id)}>
-                            <i className="bi bi-trash"></i> Eliminar
-                          </button>                        
-                          {producto.status === 1  ? (
-                            <button className="btn btn-warning ms-2" onClick={() => cambiarEstado(producto.pregunta_id, producto.status === 1 ? 0 : 1)}>
-                              <><i className="bi bi-trash"></i> Desactivar</>
+                          <div className="d-flex flex-column flex-sm-row">
+                            <button className="btn btn-warning mb-2 mb-sm-0" onClick={() => abrirFormularioEditar(producto)}>
+                              <i className="bi bi-pencil"></i> Editar
                             </button>
-                          ):( 
-                          <button className="btn btn-success ms-2" onClick={() => cambiarEstado(producto.pregunta_id, producto.status === 1 ? 0 : 1)}>
-                            <><i className="bi bi-check-circle"></i> Activar</>
-                          </button>
-                        )}
+                            <button className="btn btn-danger ms-0 ms-sm-2 mb-2 mb-sm-0" onClick={() => eliminarPregunta(producto.pregunta_id)}>
+                              <i className="bi bi-trash"></i> Eliminar
+                            </button>
+                            {producto.status === 1 ? (
+                              <button className="btn btn-warning ms-0 ms-sm-2" onClick={() => cambiarEstado(producto.pregunta_id, producto.status === 1 ? 0 : 1)}>
+                                <i className="bi bi-trash"></i> Desactivar
+                              </button>
+                            ) : (
+                              <button className="btn btn-success ms-0 ms-sm-2" onClick={() => cambiarEstado(producto.pregunta_id, producto.status === 1 ? 0 : 1)}>
+                                <i className="bi bi-check-circle"></i> Activar
+                              </button>
+                            )}
+                          </div>
                         </td>
+
                       </tr>
                     ))
                   ) : (

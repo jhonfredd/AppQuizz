@@ -197,31 +197,36 @@ const Index = () => {
   }));
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100">
+    <div className="d-flex justify-content-center align-items-center">
       <div className="card" style={{ width:'95%'}}>
         <div className="card-body">
           {formulario === false ? (
             <div>
               <h1 className="text-center">Respuestas</h1>
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <form onSubmit={handleSearch} className="d-flex">
-                  <div className="input-group">
-                    <input
-                      type="text"
-                      value={searchValue}
-                      onChange={(e) => setSearchValue(e.target.value)}
-                      className="form-control"
-                      placeholder="Buscar por respuesta"
-                    />
-                    <button className="btn btn-primary" type="submit">
-                      <i className="bi bi-search"></i> Buscar
-                    </button>
-                  </div>
-                </form>
-                <button className="btn btn-success" onClick={abrirFormularioCrear}>
-                  <i className="bi bi-plus-circle"></i> Crear Respuesta
-                </button>
+              <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center mb-3">
+                <div className='col-sm-6'>
+                  <form onSubmit={handleSearch} className="d-flex flex-column flex-sm-row w-100">
+                    <div className="input-group mb-2 mb-sm-0">
+                      <input
+                        type="text"
+                        value={searchValue}
+                        onChange={(e) => setSearchValue(e.target.value)}
+                        className="form-control"
+                        placeholder="Buscar por respuesta"
+                      />
+                      <button className="btn btn-primary" type="submit">
+                        <i className="bi bi-search"></i> Buscar
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                <div className='col-sm-2'>
+                  <button className="btn btn-success mt-2 mt-sm-0" onClick={abrirFormularioCrear}>
+                    <i className="bi bi-plus-circle"></i> Crear Respuesta
+                  </button>
+                </div>
               </div>
+
               <table className="table table-striped">
                 <thead>
                   <tr>
@@ -239,13 +244,16 @@ const Index = () => {
                         <td>{respuesta.pregunta_texto}</td>
                         <td>{respuesta.respuesta_texto}</td>
                         <td>
-                          <button className="btn btn-warning" onClick={() => abrirFormularioEditar(respuesta)}>
-                            <i className="bi bi-pencil"></i> Editar
-                          </button>
-                          <button className="btn btn-danger ms-2" onClick={() => eliminarRespuesta(respuesta.id)}>
-                            <i className="bi bi-trash"></i> Eliminar
-                          </button>
+                          <div className="d-flex flex-column flex-sm-row">
+                            <button className="btn btn-warning mb-2 mb-sm-0" onClick={() => abrirFormularioEditar(respuesta)}>
+                              <i className="bi bi-pencil"></i> Editar
+                            </button>
+                            <button className="btn btn-danger ms-0 ms-sm-2 mb-2 mb-sm-0" onClick={() => eliminarRespuesta(respuesta.id)}>
+                              <i className="bi bi-trash"></i> Eliminar
+                            </button>
+                          </div>
                         </td>
+
                       </tr>
                     ))
                   ) : (
